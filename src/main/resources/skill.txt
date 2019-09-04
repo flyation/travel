@@ -1,0 +1,18 @@
+Web:
+    html: 视图
+    jQuery
+    ajax: 异步传输
+
+Service:
+    servlet: 前端控制器
+    Filter：过滤器
+    beanUtils: 数据封装
+    jackson: json序列化
+    javaMail: 邮件
+
+Dao:
+    mysql: 数据库
+    druid: 数据库连接池
+    jdbcTemplate:jdbc
+    redis/jedis:缓存
+
