@@ -32,10 +32,7 @@ public final class JedisUtil {
 
         //初始化JedisPool
         jedisPool = new JedisPool(config, pro.getProperty("host"), Integer.parseInt(pro.getProperty("port")));
-
-
     }
-
 
     /**
      * 获取连接方法

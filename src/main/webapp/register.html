@@ -153,7 +153,7 @@
 					if (checkUsername() && checkPassword() && checkEmail() && checkName()
 							&& checkTelephone() && checkBirthday() && checkCheck()) {
 						//校验通过,ajax发送数据到服务器
-						$.post("registUserServlet", $(this).serialize(), function (data) {
+						$.post("user/register", $(this).serialize(), function (data) {
 							//处理服务器响应的数据data
                             if (data.flag == true) {
                                 //注册成功,跳转

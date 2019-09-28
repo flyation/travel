@@ -24,7 +24,7 @@
 			//1.登录按钮绑定点击事件
 			$("#loginSubmit").click(function () {
 				//2.发送ajax请求
-				$.post("loginServlet", $("#loginForm").serialize(), function (data) {
+				$.post("user/login", $("#loginForm").serialize(), function (data) {
 					if (data.flag) {
 						//登录成功
 						location.href = "index.html";

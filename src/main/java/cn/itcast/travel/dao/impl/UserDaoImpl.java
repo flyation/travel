@@ -30,8 +30,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void save(User user) {
-        String sql = "insert into tab_user (username, password, email, name, telephone, sex, birthday, status, code)" +
-                "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into tab_user (username, password, email, name, telephone, sex, birthday, status, code) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
@@ -41,6 +40,7 @@ public class UserDaoImpl implements UserDao {
                 user.getStatus(),
                 user.getCode());
     }
+
 
     @Override
     public User findByCode(String code) {
@@ -60,6 +60,7 @@ public class UserDaoImpl implements UserDao {
         String sql = "update tab_user set status = 'Y' where uid = ?";
         template.update(sql, user.getUid());
     }
+
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
