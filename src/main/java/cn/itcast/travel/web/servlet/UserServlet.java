@@ -238,4 +238,9 @@ public class UserServlet extends BaseServlet {
         //将user序列化为json,并写回客户端
         writeValue(response, user);
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

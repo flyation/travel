@@ -20,14 +20,6 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao = new CategoryDaoImpl();
 
     @Override
-    /**
-     * 从redis/数据库中查询类别
-     *
-     * @param
-     * @return java.util.List<cn.itcast.travel.domain.Category>
-     * @author fly
-     * @date 2019/9/27
-     */
     public List<Category> findAll() {
         //1.从redis查询
         //获取jedis
