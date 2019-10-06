@@ -63,7 +63,7 @@ public class RouteServlet extends BaseServlet {
 
         //类别id
         int cid = 0;
-        if (cid_str != null && cid_str.length() > 0) {
+        if (cid_str != null && cid_str.length() > 0 && !"null".equals(cid_str)) {
             cid = Integer.parseInt(cid_str);
         }
 

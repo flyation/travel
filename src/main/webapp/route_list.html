@@ -12,9 +12,9 @@
     <script src="js/getParameter.js"></script>
     <script>
         $(function () {
-/*            var search = location.search;   //alert(search);//?id=5
-            // 切割字符串，拿到第二个值
-            var cid = search.split("=")[1]; //alert(cid);//5*/
+            /*            var search = location.search;   //alert(search);//?id=5
+                        // 切割字符串，拿到第二个值
+                        var cid = search.split("=")[1]; //alert(cid);//5*/
 
             //获取cid
             var cid = getParameter("cid");
@@ -25,12 +25,12 @@
                 rname = window.decodeURIComponent(rname);
             }
             //当页码加载完成后，调用load方法，发送ajax请求加载数据
-            load(cid);
+            load(cid, null, rname);
         });
 
         //发送ajax请求,请求route/pageQuery,传递cid和currentPage
-        function load(cid, currentPage) {
-            $.get("route/pageQuery", {cid: cid, currentPage: currentPage}, function (pb) {
+        function load(cid, currentPage, rname) {
+            $.get("route/pageQuery", {cid: cid, currentPage: currentPage, rname: rname}, function (pb) {
                 //解析pagebean数据,展示到页面上
                 //1.分页条数据展示
                 //1.1总页数和总记录数
@@ -38,16 +38,16 @@
                 $("#totalCount").html(pb.totalCount);
 
                 //1.2分页页码
-                var firstPage = '<li onclick="javascript:load(' + cid + ',' + 1 + ')"><a href="javascript:void(0)">首页</a></li>'
-                var lastPage = '<li onclick="javascript:load(' + cid + ',' + pb.totalPage + ')" class="threeword"><a href="javascript:;">末页</a></li>';
-                var prePage = '<li onclick="javascript:load(' + cid + ',' + (pb.currentPage - 1) + ')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
-                var nextPage = '<li onclick="javascript:load(' + cid + ',' + (pb.currentPage + 1) + ')" class="threeword"><a href="javascript:;">下一页</a></li>';
+                var firstPage = '<li onclick="javascript:load(' + cid + ',' + 1 + ',\'' + rname + '\')"><a href="javascript:void(0)">首页</a></li>'
+                var lastPage = '<li onclick="javascript:load(' + cid + ',' + pb.totalPage + ',\'' + rname + '\')" class="threeword"><a href="javascript:;">末页</a></li>';
+                var prePage = '<li onclick="javascript:load(' + cid + ',' + (pb.currentPage - 1) + ',\'' + rname + '\')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
+                var nextPage = '<li onclick="javascript:load(' + cid + ',' + (pb.currentPage + 1) + ',\'' + rname + '\')" class="threeword"><a href="javascript:;">下一页</a></li>';
                 //判断当前页是否为首页或末页
                 if (pb.currentPage == 1) {
-                    prePage = '<li onclick="javascript:load(' + cid + ',' + 1 + ')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
+                    prePage = '<li onclick="javascript:load(' + cid + ',' + 1 + ',\'' + rname + '\')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
 
                 } else if (pb.currentPage == pb.totalPage) {
-                    nextPage = '<li onclick="javascript:load(' + cid + ',' + pb.totalPage + ')" class="threeword"><a href="javascript:;">下一页</a></li>';
+                    nextPage = '<li onclick="javascript:load(' + cid + ',' + pb.totalPage + ',\'' + rname + '\')" class="threeword"><a href="javascript:;">下一页</a></li>';
                 }
 
                 var lis = "";
@@ -80,10 +80,10 @@
                 }
 
                 for (var i = begin; i <= end; i++) {
-                    var li = '<li onclick="javascript:load(' + cid + ',' + i + ')"><a href="javascript:void(0)">' + i + '</a></li>';
+                    var li = '<li onclick="javascript:load(' + cid + ',' + i + ',\'' + rname + '\')"><a href="javascript:void(0)">' + i + '</a></li>';
                     //判断是否为当前页
                     if (pb.currentPage == i) {
-                        var li = '<li onclick="javascript:load(' + cid + ',' + i + ')" class="curPage"><a href="javascript:void(0)">' + i + '</a></li>';
+                        var li = '<li onclick="javascript:load(' + cid + ',' + i + ',\'' + rname + '\')" class="curPage"><a href="javascript:void(0)">' + i + '</a></li>';
                     }
                     lis += li;
                 }
