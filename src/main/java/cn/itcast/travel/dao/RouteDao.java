@@ -22,4 +22,9 @@ public interface RouteDao {
      */
     public List<Route> findByPage(int cid, int start, int pageSize, String rname);
 
+    /**
+     * 根据id查询
+     */
+    public Route findOne(int rid);
+
 }

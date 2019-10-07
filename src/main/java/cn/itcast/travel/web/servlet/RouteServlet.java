@@ -2,9 +2,7 @@ package cn.itcast.travel.web.servlet;
 
 import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.Route;
-import cn.itcast.travel.service.CategoryService;
 import cn.itcast.travel.service.RouteService;
-import cn.itcast.travel.service.impl.CategoryServiceImpl;
 import cn.itcast.travel.service.impl.RouteServiceImpl;
 
 import javax.servlet.ServletException;
@@ -72,6 +70,24 @@ public class RouteServlet extends BaseServlet {
 
         //4.序列化PageBean对象为json,并返回客户端
         writeValue(response, routePageBean);
+    }
 
+    /**
+     * 根据id查询一个旅游线路的详细信息
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void findOne(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1.获取参数
+        String rid = request.getParameter("rid");
+
+        //2.调用service
+        Route route =  routeService.findOne(rid);
+
+        //3.json序列化,写回页面
+        writeValue(response, route);
     }
 }
